@@ -32,7 +32,7 @@
           // genral setting
           width: "0%",
           height: "0%",
-          cellType: "",
+          cellType: data.cellType,
           scope: "row",
           textAlign: "",
           verticalAlign: "",
@@ -421,12 +421,11 @@
                   // height
                   cell.style.height = data[styleName];
                 } else if (styleName === "cellType") {
-                  console.log("styleName", styleName);
-                  // cellType
-                  if (data.cellType === "") {
-                    tinymce.activeEditor.dom.rename(cell, "td");
-                  } else {
-                    tinymce.activeEditor.dom.rename(cell, "th");
+                  // cell type
+                  if (data.cellType === "cell") {
+                    cell.style.fontWeight = "normal";
+                  } else if (data.cellType === "cellheader") {
+                    cell.style.fontWeight = "bold";
                   }
                 } else if (styleName === "scope") {
                   // cellScope
