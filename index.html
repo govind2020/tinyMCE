@@ -32,7 +32,7 @@
           // genral setting
           width: "0%",
           height: "0%",
-          cellType: "cell",
+          cellType: "",
           scope: "row",
           textAlign: "",
           verticalAlign: "",
@@ -88,7 +88,7 @@
                     name: "cellType",
                     label: "Cell Type",
                     items: [
-                      { value: "cell", text: "Cell" },
+                      { value: "", text: "Cell" },
                       { value: "cell header", text: "Header Cell" }
                     ]
                   },
@@ -140,7 +140,7 @@
                   {
                     type: "input",
                     name: "borderWidth",
-                    label: "border width"
+                    label: "Border width"
                   },
                   // border style
                   {
@@ -320,75 +320,75 @@
                 ]
               },
               // Padding
-              {
-                type: "panel",
-                title: "Padding",
-                items: [
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "top",
-                        label:
-                          "<span style='font-weight:800; margin-right: 22px'>TOP</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingTop"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Right",
-                        label:
-                          "<span style='font-weight:800; margin-right: 15px'>Right</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingRight"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Bottom",
-                        label: "<span style='font-weight:800;'>Bottom</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingBottom"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Left",
-                        label:
-                          "<span style='font-weight:800; margin-right: 24px'>Left</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingLeft"
-                      }
-                    ]
-                  }
-                ]
-              }
+              // {
+              //   type: "panel",
+              //   title: "Padding",
+              //   items: [
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "top",
+              //           label:
+              //             "<span style='font-weight:800; margin-right: 22px'>Top</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingTop"
+              //         }
+              //       ]
+              //     },
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "Right",
+              //           label:
+              //             "<span style='font-weight:800; margin-right: 15px'>Right</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingRight"
+              //         }
+              //       ]
+              //     },
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "Bottom",
+              //           label: "<span style='font-weight:800;'>Bottom</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingBottom"
+              //         }
+              //       ]
+              //     },
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "Left",
+              //           label:
+              //             "<span style='font-weight:800; margin-right: 24px'>Left</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingLeft"
+              //         }
+              //       ]
+              //     }
+              //   ]
+              // }
             ]
           },
           buttons: [
@@ -406,7 +406,6 @@
 
           onSubmit: (api) => {
             const data = api.getData();
-            console.log("data", data);
             const selectedCells = tinymce.activeEditor.dom.getParents(
               tinymce.activeEditor.selection.getNode(),
               "td"
@@ -422,11 +421,12 @@
                   // height
                   cell.style.height = data[styleName];
                 } else if (styleName === "cellType") {
-                  // cell type
-                  if (data.cellType === "cell header") {
-                    cell.style.fontWeight = "bold";
+                  console.log("styleName", styleName);
+                  // cellType
+                  if (data.cellType === "") {
+                    tinymce.activeEditor.dom.rename(cell, "td");
                   } else {
-                    cell.style.fontWeight = "";
+                    tinymce.activeEditor.dom.rename(cell, "th");
                   }
                 } else if (styleName === "scope") {
                   // cellScope
@@ -459,208 +459,208 @@
       };
 
       // custom Buttom -- for padding and margin
-      const openCustomDialog = (editor) => {
-        let defaultValues = {
-          // padding
-          paddingTop: "1px",
-          paddingRight: "1px",
-          paddingBottom: "1px",
-          paddingLeft: "1px",
-          // margin
-          marginTop: "1px",
-          marginRight: "1px",
-          marginBottom: "1px",
-          marginLeft: "1px"
-        };
+      // const openCustomDialog = (editor) => {
+      //   let defaultValues = {
+      //     // padding
+      //     paddingTop: "1px",
+      //     paddingRight: "1px",
+      //     paddingBottom: "1px",
+      //     paddingLeft: "1px",
+      //     // margin
+      //     marginTop: "1px",
+      //     marginRight: "1px",
+      //     marginBottom: "1px",
+      //     marginLeft: "1px"
+      //   };
 
-        const selectedNode = tinymce.activeEditor.selection.getNode();
-        console.log("selectedNode", selectedNode);
+      //   const selectedNode = tinymce.activeEditor.selection.getNode();
+      //   console.log("selectedNode", selectedNode);
 
-        editor.windowManager.open({
-          title: "Custom Properties",
-          body: {
-            type: "tabpanel",
-            tabs: [
-              // Padding
-              {
-                type: "panel",
-                title: "Padding",
-                items: [
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "top",
-                        label: "<span style='margin-right: 22px'>TOP</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingTop"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Right",
-                        label: "<span style='margin-right: 15px'>Right</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingRight"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Bottom",
-                        label: "<span>Bottom</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingBottom"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Left",
-                        label: "<span style='margin-right: 24px'>Left</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingLeft"
-                      }
-                    ]
-                  }
-                ]
-              },
-              // margin
-              {
-                type: "panel",
-                title: "Margin",
-                items: [
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "top",
-                        label: "<span style='margin-right: 22px'>TOP</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "marginTop"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Right",
-                        label: "<span style='margin-right: 15px'>Right</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "marginRight"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Bottom",
-                        label: "<span>Bottom</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "marginBottom"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Left",
-                        label: "<span style='margin-right: 24px'>Left</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "marginLeft"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          buttons: [
-            {
-              type: "cancel",
-              text: "Close"
-            },
-            {
-              type: "submit",
-              text: "Save",
-              buttonType: "primary"
-            }
-          ],
+      //   editor.windowManager.open({
+      //     title: "Custom Properties",
+      //     body: {
+      //       type: "tabpanel",
+      //       tabs: [
+      //         // Padding
+      //         {
+      //           type: "panel",
+      //           title: "Padding",
+      //           items: [
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "top",
+      //                   label: "<span style='margin-right: 22px'>TOP</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "paddingTop"
+      //                 }
+      //               ]
+      //             },
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "Right",
+      //                   label: "<span style='margin-right: 15px'>Right</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "paddingRight"
+      //                 }
+      //               ]
+      //             },
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "Bottom",
+      //                   label: "<span>Bottom</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "paddingBottom"
+      //                 }
+      //               ]
+      //             },
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "Left",
+      //                   label: "<span style='margin-right: 24px'>Left</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "paddingLeft"
+      //                 }
+      //               ]
+      //             }
+      //           ]
+      //         },
+      //         // margin
+      //         {
+      //           type: "panel",
+      //           title: "Margin",
+      //           items: [
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "top",
+      //                   label: "<span style='margin-right: 22px'>TOP</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "marginTop"
+      //                 }
+      //               ]
+      //             },
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "Right",
+      //                   label: "<span style='margin-right: 15px'>Right</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "marginRight"
+      //                 }
+      //               ]
+      //             },
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "Bottom",
+      //                   label: "<span>Bottom</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "marginBottom"
+      //                 }
+      //               ]
+      //             },
+      //             {
+      //               type: "bar",
+      //               items: [
+      //                 {
+      //                   type: "label",
+      //                   name: "Left",
+      //                   label: "<span style='margin-right: 24px'>Left</span>",
+      //                   items: []
+      //                 },
+      //                 {
+      //                   type: "input",
+      //                   name: "marginLeft"
+      //                 }
+      //               ]
+      //             }
+      //           ]
+      //         }
+      //       ]
+      //     },
+      //     buttons: [
+      //       {
+      //         type: "cancel",
+      //         text: "Close"
+      //       },
+      //       {
+      //         type: "submit",
+      //         text: "Save",
+      //         buttonType: "primary"
+      //       }
+      //     ],
 
-          initialData: { ...defaultValues },
-          
-          onSubmit: (api) => {
-            const data = api.getData();
-            console.log("Padding data", data);
+      //     initialData: { ...defaultValues },
 
-            if (selectedNode && selectedNode.nodeType === 1) {
-              for (let styleName in data) {
-                if (
-                  selectedNode?.style[styleName] !== undefined &&
-                  data[styleName]
-                ) {
-                  selectedNode.style[styleName] = data[styleName];
-                }
-              }
+      //     onSubmit: (api) => {
+      //       const data = api.getData();
+      //       console.log("Padding data", data);
 
-              // Log the updated node for verification
-              console.log("Updated Node", selectedNode);
-            }
+      //       if (selectedNode && selectedNode.nodeType === 1) {
+      //         for (let styleName in data) {
+      //           if (
+      //             selectedNode?.style[styleName] !== undefined &&
+      //             data[styleName]
+      //           ) {
+      //             selectedNode.style[styleName] = data[styleName];
+      //           }
+      //         }
 
-            // Update default values with current values for the next opening
-            defaultValues = { ...data };
+      //         // Log the updated node for verification
+      //         console.log("Updated Node", selectedNode);
+      //       }
 
-            // Close the dialog
-            api.close();
-            editor.windowManager.close();
-          },
-          onClose: () => {
-            editor.windowManager.close();
-          }
-        });
-      };
+      //       // Update default values with current values for the next opening
+      //       defaultValues = { ...data };
+
+      //       // Close the dialog
+      //       api.close();
+      //       editor.windowManager.close();
+      //     },
+      //     onClose: () => {
+      //       editor.windowManager.close();
+      //     }
+      //   });
+      // };
 
       // Initialize TinyMCE
       tinymce.init({
@@ -675,12 +675,12 @@
               openDialog(editor);
             }
           });
-          editor.ui.registry.addButton("customButton", {
-            text: "Custom Button",
-            onAction: function () {
-              openCustomDialog(editor);
-            }
-          });
+          // editor.ui.registry.addButton("customButton", {
+          //   text: "Custom Button",
+          //   onAction: function () {
+          //     openCustomDialog(editor);
+          //   }
+          // });
         }
       });
     </script>
