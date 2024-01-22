@@ -33,7 +33,7 @@
           width: "0%",
           height: "0%",
           cellType: "cell",
-          scope: "row",
+          scope: "",
           textAlign: "",
           verticalAlign: "",
 
@@ -42,8 +42,6 @@
           backgroundColor: "#000",
           borderColor: "#000",
           borderStyle: ""
-
-          // ... set default values for other fields as needed
         };
         const selectedCells = tinymce.activeEditor.dom.getParents(
           tinymce.activeEditor.selection.getNode(),
@@ -89,7 +87,7 @@
                     label: "Cell Type",
                     items: [
                       { value: "cell", text: "Cell" },
-                      { value: "cell header", text: "Header Cell" }
+                      { value: "cellheader", text: "Header Cell" }
                     ]
                   },
                   // scope
@@ -195,22 +193,22 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderTopStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderTopColor",
                             label: "Color",
                             default: "#000"
                           }
+                        ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderTopStyle",
+                        label: "Style",
+                        items: [
+                          { value: "none", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" }
                         ]
                       }
                     ]
@@ -229,22 +227,22 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderRightStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderRightColor",
                             label: "Color",
                             default: "#000"
                           }
+                        ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderRightStyle",
+                        label: "Style",
+                        items: [
+                          { value: "none", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" }
                         ]
                       }
                     ]
@@ -263,22 +261,22 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderBottomStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderBottomColor",
                             label: "Color",
                             default: "#000"
                           }
+                        ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderBottomStyle",
+                        label: "Style",
+                        items: [
+                          { value: "none", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" }
                         ]
                       }
                     ]
@@ -297,22 +295,22 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderLeftStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderLeftColor",
                             label: "Color",
                             default: "#000"
                           }
+                        ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderLeftStyle",
+                        label: "Style",
+                        items: [
+                          { value: "none", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" }
                         ]
                       }
                     ]
@@ -320,75 +318,75 @@
                 ]
               },
               // Padding
-              {
-                type: "panel",
-                title: "Padding",
-                items: [
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "top",
-                        label:
-                          "<span style='font-weight:800; margin-right: 22px'>TOP</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingTop"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Right",
-                        label:
-                          "<span style='font-weight:800; margin-right: 15px'>Right</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingRight"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Bottom",
-                        label: "<span style='font-weight:800;'>Bottom</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingBottom"
-                      }
-                    ]
-                  },
-                  {
-                    type: "bar",
-                    items: [
-                      {
-                        type: "label",
-                        name: "Left",
-                        label:
-                          "<span style='font-weight:800; margin-right: 24px'>Left</span>",
-                        items: []
-                      },
-                      {
-                        type: "input",
-                        name: "paddingLeft"
-                      }
-                    ]
-                  }
-                ]
-              }
+              // {
+              //   type: "panel",
+              //   title: "Padding",
+              //   items: [
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "top",
+              //           label:
+              //             "<span style='font-weight:800; margin-right: 22px'>TOP</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingTop"
+              //         }
+              //       ]
+              //     },
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "Right",
+              //           label:
+              //             "<span style='font-weight:800; margin-right: 15px'>Right</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingRight"
+              //         }
+              //       ]
+              //     },
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "Bottom",
+              //           label: "<span style='font-weight:800;'>Bottom</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingBottom"
+              //         }
+              //       ]
+              //     },
+              //     {
+              //       type: "bar",
+              //       items: [
+              //         {
+              //           type: "label",
+              //           name: "Left",
+              //           label:
+              //             "<span style='font-weight:800; margin-right: 24px'>Left</span>",
+              //           items: []
+              //         },
+              //         {
+              //           type: "input",
+              //           name: "paddingLeft"
+              //         }
+              //       ]
+              //     }
+              //   ]
+              // }
             ]
           },
           buttons: [
@@ -402,7 +400,6 @@
               buttonType: "primary"
             }
           ],
-          initialData: defaultValues,
 
           onSubmit: (api) => {
             const data = api.getData();
@@ -423,20 +420,26 @@
                   cell.style.height = data[styleName];
                 } else if (styleName === "cellType") {
                   // cell type
-                  if (data.cellType === "cell header") {
-                    cell.style.fontWeight = "bold";
-                  } else {
-                    cell.style.fontWeight = "";
+                  if (data.cellType === "cell" || data.cellType === "") {
+                    tinymce.activeEditor.dom.rename(cell, "td");
+                    tinymce.activeEditor.dom.replace();
+                    defaultValues.cellType = data.cellType;
+                  } else if (data.cellType === "cellheader") {
+                    tinymce.activeEditor.dom.rename(cell, "th");
+                    defaultValues.cellType = data.cellType;
                   }
                 } else if (styleName === "scope") {
                   // cellScope
                   cell.setAttribute("scope", data.scope);
+                  defaultValues.scope = data.scope;
                 } else if (styleName === "textAlign") {
                   // H Align
                   cell.style.textAlign = data.textAlign;
+                  defaultValues.textAlign = data.textAlign;
                 } else if (styleName === "verticalAlign") {
-                  // V align
+                  // V align verticalAlign
                   cell.style.verticalAlign = data.verticalAlign;
+                  defaultValues.verticalAlign = data.verticalAlign;
                 } else if (
                   // padding and margin Styles and color
                   cell?.style[styleName] !== undefined &&
@@ -466,6 +469,7 @@
           paddingRight: "1px",
           paddingBottom: "1px",
           paddingLeft: "1px",
+
           // margin
           marginTop: "1px",
           marginRight: "1px",
@@ -481,7 +485,6 @@
           body: {
             type: "tabpanel",
             tabs: [
-              
               // Padding
               {
                 type: "panel",
@@ -630,8 +633,8 @@
             }
           ],
 
-          initialData: { ...defaultValues },
-          
+          // initialData: { ...defaultValues },
+
           onSubmit: (api) => {
             const data = api.getData();
             console.log("Padding data", data);
@@ -643,6 +646,9 @@
                   data[styleName]
                 ) {
                   selectedNode.style[styleName] = data[styleName];
+                  // console.log("selectedNode.style[styleName]", selectedNode.style[styleName])
+                  // console.log("data[styleName]", data[styleName])
+                  defaultValues[styleName] = data[styleName];
                 }
               }
 
@@ -651,7 +657,7 @@
             }
 
             // Update default values with current values for the next opening
-            defaultValues = { ...data };
+            // defaultValues = { ...data };
 
             // Close the dialog
             api.close();
