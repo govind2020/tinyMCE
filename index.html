@@ -18,33 +18,7 @@
 
     <script>
       const openDialog = (editor) => {
-        let defaultValues = {
-          // borderTopWidth: "2px",
-          // borderToptStyle: "solid",
-          // borderTopColor: "#000",
-
-          // // Apply padding
-          // paddingTop: "1px",
-          // paddingRight: "1px",
-          // paddingBottom: "1px",
-          // paddingLeft: "1px",
-
-          // // genral setting
-          // width: "0%",
-          // height: "0%",
-          // cellType: "",
-          // scope: "row",
-          // textAlign: "",
-          // verticalAlign: "",
-
-          // // Advance
-          // borderWidth: "2px",
-          // backgroundColor: "#000",
-          // borderColor: "#000",
-          // borderStyle: ""
-
-          // ... set default values for other fields as needed
-        };
+        let defaultValues = {};
         const selectedCells = tinymce.activeEditor.dom.getParents(
           tinymce.activeEditor.selection.getNode(),
           "td"
@@ -55,8 +29,6 @@
           defaultValues = cell.style;
         });
         console.log({ defaultValues });
-
-        // Set default values for the properties
 
         // Merge default values with existing settings
         editor.windowManager.open({
@@ -132,7 +104,7 @@
                   }
                 ]
               },
-              // advance
+              // Advance panel
               {
                 type: "panel",
                 title: "Advance",
@@ -143,7 +115,7 @@
                     name: "borderWidth",
                     label: "Border width"
                   },
-                  // border style
+                  // Border style
                   {
                     type: "selectbox",
                     name: "borderStyle",
@@ -162,7 +134,7 @@
                       { value: "inherit", text: "Inherit" }
                     ]
                   },
-                  // border color
+                  // Border color
                   {
                     type: "colorinput",
                     name: "borderColor",
@@ -177,11 +149,12 @@
                   }
                 ]
               },
-              // Borders
+              // Borders panel
               {
                 type: "panel",
                 title: "Border",
                 items: [
+                  //top 
                   {
                     type: "label",
                     name: "top",
@@ -208,14 +181,22 @@
                         name: "borderTopStyle",
                         label: "Style",
                         items: [
-                          { value: "none", text: "None" },
+                          { value: "", text: "None" },
                           { value: "solid", text: "Solid" },
                           { value: "dotted", text: "Dotted" },
-                          { value: "dashed", text: "Dashed" }
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
                         ]
                       }
                     ]
                   },
+                   // right
                   {
                     type: "label",
                     name: "right",
@@ -242,14 +223,22 @@
                         name: "borderRightStyle",
                         label: "Style",
                         items: [
-                          { value: "none", text: "None" },
+                          { value: "", text: "None" },
                           { value: "solid", text: "Solid" },
                           { value: "dotted", text: "Dotted" },
-                          { value: "dashed", text: "Dashed" }
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
                         ]
                       }
                     ]
                   },
+                  // bottom
                   {
                     type: "label",
                     name: "bottom",
@@ -276,14 +265,22 @@
                         name: "borderBottomStyle",
                         label: "Style",
                         items: [
-                          { value: "none", text: "None" },
+                          { value: "", text: "None" },
                           { value: "solid", text: "Solid" },
                           { value: "dotted", text: "Dotted" },
-                          { value: "dashed", text: "Dashed" }
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
                         ]
                       }
                     ]
                   },
+                  // left
                   {
                     type: "label",
                     name: "left",
@@ -310,17 +307,24 @@
                         name: "borderLeftStyle",
                         label: "Style",
                         items: [
-                          { value: "none", text: "None" },
+                          { value: "", text: "None" },
                           { value: "solid", text: "Solid" },
                           { value: "dotted", text: "Dotted" },
-                          { value: "dashed", text: "Dashed" }
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
                         ]
                       }
                     ]
                   }
                 ]
               },
-              // Padding
+              // Padding Panel
               // {
               //   type: "panel",
               //   title: "Padding",
@@ -403,8 +407,10 @@
               buttonType: "primary"
             }
           ],
+
           initialData: defaultValues,
 
+          // OnSumbit button
           onSubmit: (api) => {
             const data = api.getData();
             const selectedCells = tinymce.activeEditor.dom.getParents(
@@ -425,15 +431,15 @@
                   // cell type
                   if (data.cellType === "cell") {
                     cell.style.fontWeight = "normal";
-                    cell.style.cellType = data.cellType
+                    cell.style.cellType = data.cellType;
                   } else if (data.cellType === "cellHeader") {
                     cell.style.fontWeight = "bold";
-                    cell.style.cellType = data.cellType
+                    cell.style.cellType = data.cellType;
                   }
                 } else if (styleName === "scope") {
                   // cellScope
                   cell.setAttribute("scope", data.scope);
-                  cell.style.scope = data.scope
+                  cell.style.scope = data.scope;
                 } else if (styleName === "textAlign") {
                   // H Align
                   cell.style.textAlign = data.textAlign;
