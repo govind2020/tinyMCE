@@ -19,29 +19,29 @@
     <script>
       const openDialog = (editor) => {
         let defaultValues = {
-          borderTopWidth: "2px",
-          borderToptStyle: "solid",
-          borderTopColor: "#000",
+          // borderTopWidth: "2px",
+          // borderToptStyle: "solid",
+          // borderTopColor: "#000",
 
-          // Apply padding
-          paddingTop: "1px",
-          paddingRight: "1px",
-          paddingBottom: "1px",
-          paddingLeft: "1px",
+          // // Apply padding
+          // paddingTop: "1px",
+          // paddingRight: "1px",
+          // paddingBottom: "1px",
+          // paddingLeft: "1px",
 
-          // genral setting
-          width: "0%",
-          height: "0%",
-          cellType: data.cellType,
-          scope: "row",
-          textAlign: "",
-          verticalAlign: "",
+          // // genral setting
+          // width: "0%",
+          // height: "0%",
+          // cellType: "",
+          // scope: "row",
+          // textAlign: "",
+          // verticalAlign: "",
 
-          // Advance
-          borderWidth: "2px",
-          backgroundColor: "#000",
-          borderColor: "#000",
-          borderStyle: ""
+          // // Advance
+          // borderWidth: "2px",
+          // backgroundColor: "#000",
+          // borderColor: "#000",
+          // borderStyle: ""
 
           // ... set default values for other fields as needed
         };
@@ -54,6 +54,7 @@
         selectedCells.forEach((cell) => {
           defaultValues = cell.style;
         });
+        console.log({ defaultValues });
 
         // Set default values for the properties
 
@@ -88,8 +89,8 @@
                     name: "cellType",
                     label: "Cell Type",
                     items: [
-                      { value: "", text: "Cell" },
-                      { value: "cell header", text: "Header Cell" }
+                      { value: "cell", text: "Cell" },
+                      { value: "cellHeader", text: "Header Cell" }
                     ]
                   },
                   // scope
@@ -318,7 +319,7 @@
                     ]
                   }
                 ]
-              }
+              },
               // Padding
               // {
               //   type: "panel",
@@ -424,12 +425,15 @@
                   // cell type
                   if (data.cellType === "cell") {
                     cell.style.fontWeight = "normal";
-                  } else if (data.cellType === "cellheader") {
+                    cell.style.cellType = data.cellType
+                  } else if (data.cellType === "cellHeader") {
                     cell.style.fontWeight = "bold";
+                    cell.style.cellType = data.cellType
                   }
                 } else if (styleName === "scope") {
                   // cellScope
                   cell.setAttribute("scope", data.scope);
+                  cell.style.scope = data.scope
                 } else if (styleName === "textAlign") {
                   // H Align
                   cell.style.textAlign = data.textAlign;
