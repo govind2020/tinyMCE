@@ -18,33 +18,7 @@
 
     <script>
       const openDialog = (editor) => {
-        let defaultValues = {
-          borderTopWidth: "2px",
-          borderToptStyle: "solid",
-          borderTopColor: "#000",
-
-          // Apply padding
-          paddingTop: "1px",
-          paddingRight: "1px",
-          paddingBottom: "1px",
-          paddingLeft: "1px",
-
-          // genral setting
-          width: "0%",
-          height: "0%",
-          cellType: "",
-          scope: "row",
-          textAlign: "",
-          verticalAlign: "",
-
-          // Advance
-          borderWidth: "2px",
-          backgroundColor: "#000",
-          borderColor: "#000",
-          borderStyle: ""
-
-          // ... set default values for other fields as needed
-        };
+        let defaultValues = {};
         const selectedCells = tinymce.activeEditor.dom.getParents(
           tinymce.activeEditor.selection.getNode(),
           "td"
@@ -54,8 +28,7 @@
         selectedCells.forEach((cell) => {
           defaultValues = cell.style;
         });
-
-        // Set default values for the properties
+        console.log({ defaultValues });
 
         // Merge default values with existing settings
         editor.windowManager.open({
@@ -88,8 +61,8 @@
                     name: "cellType",
                     label: "Cell Type",
                     items: [
-                      { value: "", text: "Cell" },
-                      { value: "cell header", text: "Header Cell" }
+                      { value: "cell", text: "Cell" },
+                      { value: "cellHeader", text: "Header Cell" }
                     ]
                   },
                   // scope
@@ -131,7 +104,7 @@
                   }
                 ]
               },
-              // advance
+              // Advance panel
               {
                 type: "panel",
                 title: "Advance",
@@ -142,7 +115,7 @@
                     name: "borderWidth",
                     label: "Border width"
                   },
-                  // border style
+                  // Border style
                   {
                     type: "selectbox",
                     name: "borderStyle",
@@ -161,7 +134,7 @@
                       { value: "inherit", text: "Inherit" }
                     ]
                   },
-                  // border color
+                  // Border color
                   {
                     type: "colorinput",
                     name: "borderColor",
@@ -176,11 +149,12 @@
                   }
                 ]
               },
-              // Borders
+              // Borders panel
               {
                 type: "panel",
                 title: "Border",
                 items: [
+                  //top 
                   {
                     type: "label",
                     name: "top",
@@ -195,26 +169,34 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderTopStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderTopColor",
                             label: "Color",
                             default: "#000"
                           }
                         ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderTopStyle",
+                        label: "Style",
+                        items: [
+                          { value: "", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
+                        ]
                       }
                     ]
                   },
+                   // right
                   {
                     type: "label",
                     name: "right",
@@ -229,26 +211,34 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderRightStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderRightColor",
                             label: "Color",
                             default: "#000"
                           }
                         ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderRightStyle",
+                        label: "Style",
+                        items: [
+                          { value: "", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
+                        ]
                       }
                     ]
                   },
+                  // bottom
                   {
                     type: "label",
                     name: "bottom",
@@ -263,26 +253,34 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderBottomStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderBottomColor",
                             label: "Color",
                             default: "#000"
                           }
                         ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderBottomStyle",
+                        label: "Style",
+                        items: [
+                          { value: "", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
+                        ]
                       }
                     ]
                   },
+                  // left
                   {
                     type: "label",
                     name: "left",
@@ -297,29 +295,36 @@
                             label: "Width"
                           },
                           {
-                            type: "selectbox",
-                            name: "borderLeftStyle",
-                            label: "Style",
-                            items: [
-                              { value: "none", text: "None" },
-                              { value: "solid", text: "Solid" },
-                              { value: "dotted", text: "Dotted" },
-                              { value: "dashed", text: "Dashed" }
-                            ]
-                          },
-                          {
                             type: "colorinput",
                             name: "borderLeftColor",
                             label: "Color",
                             default: "#000"
                           }
                         ]
+                      },
+                      {
+                        type: "selectbox",
+                        name: "borderLeftStyle",
+                        label: "Style",
+                        items: [
+                          { value: "", text: "None" },
+                          { value: "solid", text: "Solid" },
+                          { value: "dotted", text: "Dotted" },
+                          { value: "dashed", text: "Dashed" },
+                          { value: "double", text: "Double" },
+                          { value: "groove", text: "Groove" },
+                          { value: "inset", text: "Inset" },
+                          { value: "ridge", text: "Ridge" },
+                          { value: "outset", text: "Outset" },
+                          { value: "initial", text: "Initial" },
+                          { value: "inherit", text: "Inherit" }
+                        ]
                       }
                     ]
                   }
                 ]
               },
-              // Padding
+              // Padding Panel
               // {
               //   type: "panel",
               //   title: "Padding",
@@ -402,8 +407,10 @@
               buttonType: "primary"
             }
           ],
+
           initialData: defaultValues,
 
+          // OnSumbit button
           onSubmit: (api) => {
             const data = api.getData();
             const selectedCells = tinymce.activeEditor.dom.getParents(
@@ -421,16 +428,18 @@
                   // height
                   cell.style.height = data[styleName];
                 } else if (styleName === "cellType") {
-                  console.log("styleName", styleName);
-                  // cellType
-                  if (data.cellType === "") {
-                    tinymce.activeEditor.dom.rename(cell, "td");
-                  } else {
-                    tinymce.activeEditor.dom.rename(cell, "th");
+                  // cell type
+                  if (data.cellType === "cell") {
+                    cell.style.fontWeight = "normal";
+                    cell.style.cellType = data.cellType;
+                  } else if (data.cellType === "cellHeader") {
+                    cell.style.fontWeight = "bold";
+                    cell.style.cellType = data.cellType;
                   }
                 } else if (styleName === "scope") {
                   // cellScope
                   cell.setAttribute("scope", data.scope);
+                  cell.style.scope = data.scope;
                 } else if (styleName === "textAlign") {
                   // H Align
                   cell.style.textAlign = data.textAlign;
